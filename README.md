@@ -51,26 +51,26 @@ PDFs: [schematic](T8Sequencer_esquematico.pdf) · [PCB](T8Sequencer_pcb.pdf)
 flowchart LR
   USB["USB-C J1"] --> UART["CH340C USB-UART"]
   USB --> LDO["AMS1117-3.3"]
-  UART <--> ESP["ESP32-WROOM-32"]
-  UART -. "DTR/RTS via Q1,Q2" .-> ESP
-  LDO --> ESP
+  UART -->|UART0| ESP["ESP32-WROOM-32"]
+  UART -.->|DTR / RTS via Q1, Q2| ESP
+  LDO -->|3.3 V| ESP
 
   STEPS["16 step buttons"] --> EXP1["MCP23017 0x20"]
   FNKEYS["8 function buttons"] --> EXP2["MCP23017 0x21"]
-  EXP1 -- "I2C" --> ESP
-  EXP2 -- "I2C" --> ESP
+  EXP1 -->|I2C| ESP
+  EXP2 -->|I2C| ESP
   POTS["10 potentiometers"] --> MUX["CD74HC4067 16:1 mux"]
-  MUX -- "ADC, GPIO34" --> ESP
+  MUX -->|ADC on GPIO34| ESP
   ENC["Rotary encoder + switch"] --> ESP
 
-  ESP -- "GPIO16" --> LVL["74AHCT1G125 level shifter"]
-  LVL -- "33 ohm series" --> LEDS["16x WS2812B"]
-  ESP -- "SPI" --> DISP["ST7789 2.4in module"]
-  ESP -- "I2S" --> DAC["I2S DAC header, line out"]
-  ESP -- "I2S" --> AMP["MAX98357A module, speaker"]
-  ESP -- "GPIO32" --> MOUT["MIDI OUT TRS-A, J3"]
-  MIN["MIDI IN TRS-A, J2"] --> OPTO["6N138 optocoupler"]
-  OPTO -- "GPIO17" --> ESP
+  ESP -->|GPIO16| LVL["74AHCT1G125 level shifter"]
+  LVL -->|33 ohm series| LEDS["16x WS2812B"]
+  ESP -->|SPI| DISP["ST7789 2.4in module"]
+  ESP -->|I2S| DAC["I2S DAC header, line out"]
+  ESP -->|I2S| AMP["MAX98357A module, speaker"]
+  ESP -->|GPIO32| MOUT["MIDI OUT TRS-A, J3"]
+  MIDIIN["MIDI IN TRS-A, J2"] --> OPTO["6N138 optocoupler"]
+  OPTO -->|GPIO17| ESP
 ```
 
 ---
