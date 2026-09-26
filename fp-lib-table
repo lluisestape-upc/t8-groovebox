@@ -1,0 +1,5 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "Lluis") (type "KiCad") (uri "${KIPRJMOD}/Lluis.pretty") (options "") (descr ""))
+	(lib (name "LCD ST7789V") (type "KiCad") (uri "${KIPRJMOD}/LCD ST7789V.pretty") (options "") (descr ""))
+)

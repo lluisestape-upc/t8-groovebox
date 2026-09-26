@@ -1,0 +1,25 @@
+# KiCad local state (per-user, not part of the design)
+*.kicad_prl
+fp-info-cache
+~*.*
+*-backups/
+*.lck
+
+# Editor history / local backups
+.history/
+backup_*/
+*.bak
+*.bak_*
+*.kicad_pcb.bak*
+*.kicad_sch.bak*
+
+# KiCad autosave / recovery
+_autosave-*
+*.kicad_sch-bak
+*.kicad_pcb-bak
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+img/T8Sequencer.svg
